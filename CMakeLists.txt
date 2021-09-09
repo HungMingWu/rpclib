@@ -37,8 +37,8 @@ set(RPCLIB_DEFAULT_PORT 8080
   CACHE STRING "Default port used for running tests and examples")
 set(RPCLIB_DEFAULT_BUFFER_SIZE "1024 << 10" 
   CACHE STRING "Default buffer size")
-set(RPCLIB_CXX_STANDARD 11 CACHE STRING 
-  "C++ version used to build rpclib (Currently: Only 11 and 14 supported)")
+set(RPCLIB_CXX_STANDARD 17 CACHE STRING
+  "C++ version used to build rpclib (Currently: Only 17 supported)")
 
 if(RPCLIB_GENERATE_COMPDB)
   set(CMAKE_EXPORT_COMPILE_COMMANDS "ON") # for YCM
@@ -47,8 +47,7 @@ if(RPCLIB_GENERATE_COMPDB)
     copy ${CMAKE_BINARY_DIR}/compile_commands.json ${CMAKE_BINARY_DIR}/../compile_commands.json)
 endif()
 
-if(NOT ${RPCLIB_CXX_STANDARD} EQUAL 14 AND 
-   NOT ${RPCLIB_CXX_STANDARD} EQUAL 11)
+if(NOT ${RPCLIB_CXX_STANDARD} EQUAL 17)
   message(fatal_error "Unsupported C++ standard: ${RPCLIB_CXX_STANDARD}")
 endif()
 
@@ -101,7 +100,6 @@ add_library(${PROJECT_NAME}
   lib/rpc/detail/server_session.cc
   lib/rpc/detail/response.cc
   lib/rpc/detail/client_error.cc
-  lib/rpc/nonstd/optional.cc
   ${DEP_SOURCES}
   ${DEP_HEADERS}
   ${RPCLIB_HEADERS})

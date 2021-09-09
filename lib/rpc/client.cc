@@ -37,14 +37,14 @@ struct client::impl {
           state_(client::connection_state::initial),
           writer_(std::make_shared<detail::async_writer>(
               &io_, RPCLIB_ASIO::ip::tcp::socket(io_))),
-          timeout_(nonstd::nullopt),
-          connection_ec_(nonstd::nullopt) {
+          timeout_(std::nullopt),
+          connection_ec_(std::nullopt) {
         pac_.reserve_buffer(default_buffer_size);
     }
 
     void do_connect(tcp::resolver::iterator endpoint_iterator) {
         LOG_INFO("Initiating connection.");
-        connection_ec_ = nonstd::nullopt;
+        connection_ec_ = std::nullopt;
         RPCLIB_ASIO::async_connect(
             writer_->socket(), endpoint_iterator,
             [this](std::error_code ec, tcp::resolver::iterator) {
@@ -133,7 +133,7 @@ struct client::impl {
         writer_->write(std::move(item));
     }
 
-    nonstd::optional<int64_t> get_timeout() {
+    std::optional<int64_t> get_timeout() {
         return timeout_;
     }
 
@@ -142,7 +142,7 @@ struct client::impl {
     }
 
     void clear_timeout() {
-        timeout_ = nonstd::nullopt;
+        timeout_ = std::nullopt;
     }
 
     using call_t =
@@ -162,8 +162,8 @@ struct client::impl {
     std::thread io_thread_;
     std::atomic<client::connection_state> state_;
     std::shared_ptr<detail::async_writer> writer_;
-    nonstd::optional<int64_t> timeout_;
-    nonstd::optional<std::error_code> connection_ec_;
+    std::optional<int64_t> timeout_;
+    std::optional<std::error_code> connection_ec_;
     RPCLIB_CREATE_LOG_CHANNEL(client)
 };
 
@@ -227,7 +227,7 @@ client::connection_state client::get_connection_state() const {
     return pimpl->get_connection_state();
 }
 
-nonstd::optional<int64_t> client::get_timeout() const {
+std::optional<int64_t> client::get_timeout() const {
     return pimpl->get_timeout();
 }
 
