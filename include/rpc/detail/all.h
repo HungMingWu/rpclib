@@ -5,7 +5,6 @@
 
 #include "rpc/detail/invoke.h"
 #include "rpc/detail/if.h"
-#include "rpc/detail/bool.h"
 
 namespace rpc {
 namespace detail {
@@ -16,7 +15,7 @@ template <typename... T> struct all : true_ {};
 
 template <typename H, typename... T>
 struct all<H, T...>
-    : if_<H, all<T...>, false_> {};
+    : if_<H, all<T...>, std::false_type> {};
 
 }
 }

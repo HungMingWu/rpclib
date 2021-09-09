@@ -3,13 +3,11 @@
 #ifndef FUNC_TRAITS_H_HWIWA6G0
 #define FUNC_TRAITS_H_HWIWA6G0
 
-#include "rpc/detail/bool.h"
-
 namespace rpc {
 namespace detail {
 
 template <int N>
-using is_zero = invoke<std::conditional<(N == 0), true_, false_>>;
+using is_zero = invoke<std::conditional<(N == 0), std::true_type, std::false_type>>;
 
 template <int N, typename... Ts>
 using nth_type = invoke<std::tuple_element<N, std::tuple<Ts...>>>;
@@ -67,7 +65,7 @@ template <typename F> using is_zero_arg = is_zero<func_traits<F>::arg_count>;
 
 template <typename F>
 using is_single_arg =
-    invoke<std::conditional<func_traits<F>::arg_count == 1, true_, false_>>;
+    invoke<std::conditional<func_traits<F>::arg_count == 1, std::true_type, std::false_type>>;
 
 template <typename F>
 using is_void_result = std::is_void<typename func_traits<F>::result_type>;

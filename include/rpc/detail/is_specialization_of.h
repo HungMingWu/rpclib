@@ -3,16 +3,14 @@
 #ifndef IS_SPECIALIZATION_OF_H_OPZTARVG
 #define IS_SPECIALIZATION_OF_H_OPZTARVG
 
-#include "rpc/detail/bool.h"
-
 namespace rpc {
 namespace detail {
 
 template <template <typename...> class Templ, typename T>
-struct is_specialization_of : false_ {};
+struct is_specialization_of : std::false_type {};
 
 template <template <typename...> class Templ, typename... T>
-struct is_specialization_of<Templ, Templ<T...>> : true_ {};
+struct is_specialization_of<Templ, Templ<T...>> : std::true_type {};
 
 }
 } /* rpc  */
