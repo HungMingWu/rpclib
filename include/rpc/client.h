@@ -136,7 +136,7 @@ private:
               std::shared_ptr<rsp_promise> p);
     void post(RPCLIB_MSGPACK::sbuffer *buffer);
     int get_next_call_idx();
-    RPCLIB_NORETURN void throw_timeout(std::string const& func_name);
+    [[noreturn]] void throw_timeout(std::string const& func_name);
 
 private:
     static constexpr double buffer_grow_factor = 1.8;

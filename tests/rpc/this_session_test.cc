@@ -12,7 +12,7 @@
 using namespace rpc::testutils;
 using namespace rpc;
 
-static RPCLIB_CONSTEXPR uint16_t test_port = rpc::constants::DEFAULT_PORT;
+static constexpr uint16_t test_port = rpc::constants::DEFAULT_PORT;
 
 class this_session_test : public testing::Test {
 public:

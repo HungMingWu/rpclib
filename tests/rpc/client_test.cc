@@ -27,7 +27,7 @@ public:
     }
 
 protected:
-    static RPCLIB_CONSTEXPR uint16_t test_port = rpc::constants::DEFAULT_PORT;
+    static constexpr uint16_t test_port = rpc::constants::DEFAULT_PORT;
     MockDummy md;
     rpc::server s;
     std::atomic_bool is_running_;

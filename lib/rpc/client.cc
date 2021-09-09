@@ -245,7 +245,7 @@ void client::wait_all_responses() {
     }
 }
 
-RPCLIB_NORETURN void client::throw_timeout(std::string const& func_name) {
+[[noreturn]] void client::throw_timeout(std::string const& func_name) {
     throw rpc::timeout(
         RPCLIB_FMT::format("Timeout of {}ms while calling RPC function '{}'",
                            *get_timeout(), func_name));

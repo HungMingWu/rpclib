@@ -11,7 +11,7 @@
 
 using namespace rpc::testutils;
 
-static RPCLIB_CONSTEXPR uint16_t test_port = rpc::constants::DEFAULT_PORT;
+static constexpr uint16_t test_port = rpc::constants::DEFAULT_PORT;
 
 class server_workers_test : public testing::Test {
 public:
