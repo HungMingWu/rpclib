@@ -83,7 +83,7 @@ private:
 
 template <typename T>
 inline response response::make_result(uint32_t id, T &&result) {
-    auto z = rpc::detail::make_unique<RPCLIB_MSGPACK::zone>();
+    auto z = std::make_unique<RPCLIB_MSGPACK::zone>();
     RPCLIB_MSGPACK::object o(std::forward<T>(result), *z);
     response inst;
     inst.id_ = id;

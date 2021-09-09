@@ -10,7 +10,7 @@ namespace rpc {
 namespace detail {
 
 //! \brief Evaluates to true_type if any of its arguments is true_type.
-template <typename... T> struct any : false_ {};
+template <typename... T> struct any : std::false_type {};
 
 template <typename H, typename... T>
 struct any<H, T...> : if_<H, std::true_type, any<T...>> {};
