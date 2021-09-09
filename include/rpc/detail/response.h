@@ -4,7 +4,6 @@
 #define RESPONSE_H_MVRZEKPX
 
 #include "rpc/detail/log.h"
-#include "rpc/detail/make_unique.h"
 #include "rpc/msgpack.hpp"
 
 namespace rpc {
@@ -103,7 +102,7 @@ response::make_result(uint32_t id, std::unique_ptr<RPCLIB_MSGPACK::object_handle
 
 template <typename T>
 inline response response::make_error(uint32_t id, T &&error) {
-    auto z = rpc::detail::make_unique<RPCLIB_MSGPACK::zone>();
+    auto z = std::make_unique<RPCLIB_MSGPACK::zone>();
     RPCLIB_MSGPACK::object o(std::forward<T>(error), *z);
     response inst;
     inst.id_ = id;

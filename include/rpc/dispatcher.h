@@ -17,7 +17,6 @@
 #include "rpc/detail/log.h"
 #include "rpc/detail/not.h"
 #include "rpc/detail/response.h"
-#include "rpc/detail/make_unique.h"
 
 namespace rpc {
 
